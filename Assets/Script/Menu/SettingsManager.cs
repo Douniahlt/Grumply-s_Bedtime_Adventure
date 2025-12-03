@@ -27,7 +27,7 @@ public class SettingsManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            // NE PAS utiliser DontDestroyOnLoad pour éviter les conflits
         }
         else
         {

@@ -64,11 +64,13 @@ public class ItemPickup : MonoBehaviour
         // Calculer la hauteur de l'objet
         float objectHeight = objectRenderer.bounds.size.y;
         
-        // Créer un GameObject pour le prompt (AVEC parent)
+        // Créer un GameObject pour le prompt (AVEC parent mais taille indépendante)
         ePrompt = new GameObject("E_Prompt");
-        ePrompt.transform.SetParent(transform); // Attacher à l'objet pour destruction automatique
-        ePrompt.transform.position = transform.position + new Vector3(0, objectHeight / 2 + 0.5f, 0);
-        ePrompt.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+        ePrompt.transform.SetParent(transform, false); // worldPositionStays = false
+        ePrompt.transform.localPosition = new Vector3(0, objectHeight / 2 + 0.5f, 0);
+        
+        // Utiliser une échelle ABSOLUE indépendante de la taille de l'objet parent
+        ePrompt.transform.localScale = new Vector3(0.05f / transform.lossyScale.x, 0.05f / transform.lossyScale.y, 0.05f / transform.lossyScale.z);
         
         // Créer le cercle de fond
         GameObject circle = GameObject.CreatePrimitive(PrimitiveType.Sphere);
