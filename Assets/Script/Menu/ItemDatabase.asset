@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b3ec8cc32f0bd44ab5637e89bd58bf1, type: 3}
+  m_Name: ItemDatabase
+  m_EditorClassIdentifier: 
+  items:
+  - itemName: Cube
+    itemIcon: {fileID: 21300000, guid: 041b4f858e92dd547ab6689dd3fb3e7d, type: 3}
+  - itemName: "Cl\xE9"
+    itemIcon: {fileID: 21300000, guid: 041b4f858e92dd547ab6689dd3fb3e7d, type: 3}
+  - itemName: "Deux cl\xE9"
+    itemIcon: {fileID: 21300000, guid: 380e8cbcb3e4b6d479788ac21f7f7b57, type: 3}
