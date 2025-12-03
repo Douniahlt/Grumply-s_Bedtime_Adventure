@@ -20,7 +20,18 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // Retour au menu avec Échap (ou Start manette)
-        if (InputManager.instance != null && InputManager.instance.GetBackButton())
+        bool backPressed = false;
+        
+        if (InputManager.instance != null)
+        {
+            backPressed = InputManager.instance.GetBackButton();
+        }
+        else
+        {
+            backPressed = Input.GetKeyDown(KeyCode.Escape); // Fallback clavier
+        }
+        
+        if (backPressed)
         {
             ReturnToMenu();
         }

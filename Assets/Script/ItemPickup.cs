@@ -111,19 +111,47 @@ public class ItemPickup : MonoBehaviour
             float objectHeight = objectRenderer.bounds.size.y;
             ePrompt.transform.position = transform.position + new Vector3(0, objectHeight / 2 + 0.5f, 0);
         }
-        
+
         // Si le joueur est proche et appuie sur E (ou bouton A manette)
-        if (playerNearby && InputManager.instance != null && InputManager.instance.GetPickupButton())
+        if (playerNearby)
         {
-            PickupItem();
+            bool pickupPressed = false;
+            
+            if (InputManager.instance != null)
+            {
+                pickupPressed = InputManager.instance.GetPickupButton();
+            }
+            else
+            {
+                pickupPressed = Input.GetKeyDown(KeyCode.E); // Fallback clavier
+            }
+            
+            if (pickupPressed)
+            {
+                PickupItem();
+            }
+        }
+
+        // Si on appuie sur Tab (ou bouton X manette), montrer l'outline
+        bool highlightPressed = false;
+        bool highlightReleased = false;
+        
+        if (InputManager.instance != null)
+        {
+            highlightPressed = InputManager.instance.GetHighlightButton();
+            highlightReleased = InputManager.instance.GetHighlightButtonUp();
+        }
+        else
+        {
+            highlightPressed = Input.GetKeyDown(KeyCode.Tab); // Fallback clavier
+            highlightReleased = Input.GetKeyUp(KeyCode.Tab);
         }
         
-        // Si on appuie sur Tab (ou bouton X manette), montrer l'outline
-        if (InputManager.instance != null && InputManager.instance.GetHighlightButton())
+        if (highlightPressed)
         {
             ShowOutline(true);
         }
-        else if (InputManager.instance != null && InputManager.instance.GetHighlightButtonUp())
+        else if (highlightReleased)
         {
             // Si le joueur n'est pas proche, cacher l'outline
             if (!playerNearby)

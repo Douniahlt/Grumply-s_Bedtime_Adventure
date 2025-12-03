@@ -42,7 +42,18 @@ public class InventoryManager : MonoBehaviour
     void Update()
     {
         // Appuyer sur I (ou bouton B manette) pour afficher/cacher l'inventaire
-        if (InputManager.instance != null && InputManager.instance.GetInventoryButton())
+        bool inventoryPressed = false;
+        
+        if (InputManager.instance != null)
+        {
+            inventoryPressed = InputManager.instance.GetInventoryButton();
+        }
+        else
+        {
+            inventoryPressed = Input.GetKeyDown(KeyCode.I); // Fallback clavier
+        }
+        
+        if (inventoryPressed)
         {
             ToggleInventory();
         }

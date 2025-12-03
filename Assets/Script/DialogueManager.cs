@@ -103,7 +103,18 @@ public class DialogueManager : MonoBehaviour
     void Update()
     {
         // Espace (ou bouton A manette) fonctionne TOUJOURS pour afficher le texte complet
-        if (isDialogueActive && InputManager.instance != null && InputManager.instance.GetContinueButton())
+        bool continuePressed = false;
+        
+        if (InputManager.instance != null)
+        {
+            continuePressed = InputManager.instance.GetContinueButton();
+        }
+        else
+        {
+            continuePressed = Input.GetKeyDown(KeyCode.Space); // Fallback clavier
+        }
+        
+        if (isDialogueActive && continuePressed)
         {
             if (isTyping)
             {
